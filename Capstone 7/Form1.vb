@@ -933,4 +933,8 @@ Fortune!",
         btnSolve.Visible = True
 
     End Sub
+
+    Private Sub lblWould_Click(sender As Object, e As EventArgs) Handles lblWould.Click
+
+    End Sub
 End Class
