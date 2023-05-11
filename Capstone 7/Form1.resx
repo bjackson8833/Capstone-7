@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="btnExit.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnSpin.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblRolled.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="txtTicks.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtTrue.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="FileSystemWatcher1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>106, 17</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
+  <metadata name="lblWould.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnS2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnG2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="picAD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="picAD.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAA/UExURf///wAAAD09PfLy8llZWaysrK+vr1ZWVqqqqlNTU6enp4iIiE9PT0lJSVpaWkBAQPn5
+        +be3ty8vL2pqat/f33qczsIAAAM/SURBVHhe7drrctMwFEXhGFJ6IaXl8v7PSk+tNCeJ75KsLc36/tQF
+        EmvNNu0M9AAAAAAAAAAAAOa8Pz0s9Tu8pDLfu8X+hJdUZkXht/CSylDoUCiKQodCURQ6FIqi0KFQFIUO
+        haIodCgURaFDoSgKHQpFUehQKIpCh0JRFDoUiqLQoVAUhQ6Foih0KBRFoUOhKAodCkVR6FAoikKHQlEU
+        OhSKotChUBSFDoWiKHQoFEWhQ2EhP8PHMSkL5+6Vx+k1XIxIWPh6Chf7OnbP4WpYusJTdwxX+zp204nJ
+        Ck9ducLJxFSFH4EFC6cSExU+2x8oWDiRmKbwM7BoYfcYPr2TpLAPLFs4umKKwhBYuHDs9gkKz4GlC0ce
+        1PjCr8DihcOJ0YWXwPKFg4mxhS5QoHAoMbLQByoUDpwhrvAx/FZPofB+xajCqwVFCrtf4dfPYgqvF1Qp
+        vF0xovBmQZnCm3NsL7xdUKfwesXNhXcLChVenWRr4f2CSoX+KBsLhwKVCt2Duq1wMFCq8HKYTYVzb7qr
+        kcN8rbilcHhBtcLzt/4NhaNvKVYYVlxfOLagXmF/oNWFc2+4u4kDfa64tnB8QcVCO9LKwqlAxcKPM60r
+        nAyULOyO7+FigbeZQM3Czv6/YaG3v+FijGZhShTmQWFKFOZBYUoU5kFhShTm0X7hwD9NZzP5w1fZPIW7
+        7+Ep3HNnL+H2+b2EO+5urxULLWj2WbHYguYhHCKnggua/A9q0QVN7sTCC5q8iQKBef8uSgQeDj/CcdJ7
+        CHcoLteKIguaPCvKLGhyrCgVmGPFH+GdZaReUWxBk3ZFwcC0iZKBKR9U0cB0K8p9kblIs6LsgibFisIL
+        mvgVpRc0sSuKL2jiVqwgMG7FKgJjEisJ3P6gyn+Rudi2YjULmi0rVrSgWb9iVQuatStWtqBZt2J1C5o1
+        K1a4oFm+YpULmqWJ1QYufVArfUR7S1aseEEzv2LVC5q5FStf0EyvWP2CZmrFBhY04ys2saAZW7GRBc1w
+        YkOBww9qM49o737FphY0tys2tqC5XrG5BY1fscEFzWXFJhc05xUbXdD0Kza7oLHEpgPtQW34Ee39Cx8B
+        AAAAAAAAAMAqh8N/qF8vIUM9geMAAAAASUVORK5CYII=
+</value>
+  </data>
+  <metadata name="btnWheel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnSolve.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtSolve.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblOnecount.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblTwocount.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnX.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnW.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnV.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnU.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnT.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnS.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnR.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnQ.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnP.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnO.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnN.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnZ.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnM.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnL.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnY.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnK.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnJ.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnI.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnH.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnG.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnF.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnE.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnC.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnB.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnA.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtWord.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lstboxW.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="rtxtbox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnGen.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnGuess.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblTotal.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblRd.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="picWheel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="picArrow.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="picArrow.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        BxiOcrXsOTNGAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <metadata name="picW.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+</root>
