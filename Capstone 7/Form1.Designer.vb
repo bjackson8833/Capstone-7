@@ -78,6 +78,12 @@ Partial Class frmMain
         Me.btnG2 = New System.Windows.Forms.Button()
         Me.btnS2 = New System.Windows.Forms.Button()
         Me.lblWould = New System.Windows.Forms.Label()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.txtReset = New System.Windows.Forms.TextBox()
+        Me.lblP1 = New System.Windows.Forms.Label()
+        Me.lblP2 = New System.Windows.Forms.Label()
+        Me.txtSo = New System.Windows.Forms.TextBox()
+        Me.btnSOLV = New System.Windows.Forms.Button()
         CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWheel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picArrow, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -515,6 +521,7 @@ Partial Class frmMain
         Me.txtSolve.Name = "txtSolve"
         Me.txtSolve.Size = New System.Drawing.Size(110, 20)
         Me.txtSolve.TabIndex = 44
+        Me.txtSolve.Visible = False
         '
         'btnSolve
         '
@@ -576,12 +583,72 @@ Partial Class frmMain
         Me.lblWould.TabIndex = 50
         Me.lblWould.Text = "Would you like to guess or solve?"
         '
+        'txtSearch
+        '
+        Me.txtSearch.Location = New System.Drawing.Point(163, 104)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(100, 20)
+        Me.txtSearch.TabIndex = 53
+        Me.txtSearch.Visible = False
+        '
+        'txtReset
+        '
+        Me.txtReset.Location = New System.Drawing.Point(144, 529)
+        Me.txtReset.Name = "txtReset"
+        Me.txtReset.Size = New System.Drawing.Size(100, 20)
+        Me.txtReset.TabIndex = 54
+        Me.txtReset.Visible = False
+        '
+        'lblP1
+        '
+        Me.lblP1.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.lblP1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblP1.Location = New System.Drawing.Point(955, 298)
+        Me.lblP1.Name = "lblP1"
+        Me.lblP1.Size = New System.Drawing.Size(169, 124)
+        Me.lblP1.TabIndex = 55
+        Me.lblP1.Visible = False
+        '
+        'lblP2
+        '
+        Me.lblP2.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.lblP2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblP2.Location = New System.Drawing.Point(955, 298)
+        Me.lblP2.Name = "lblP2"
+        Me.lblP2.Size = New System.Drawing.Size(169, 124)
+        Me.lblP2.TabIndex = 56
+        Me.lblP2.Visible = False
+        '
+        'txtSo
+        '
+        Me.txtSo.Location = New System.Drawing.Point(530, 310)
+        Me.txtSo.Name = "txtSo"
+        Me.txtSo.Size = New System.Drawing.Size(100, 20)
+        Me.txtSo.TabIndex = 57
+        Me.txtSo.Visible = False
+        '
+        'btnSOLV
+        '
+        Me.btnSOLV.Location = New System.Drawing.Point(43, 605)
+        Me.btnSOLV.Name = "btnSOLV"
+        Me.btnSOLV.Size = New System.Drawing.Size(75, 23)
+        Me.btnSOLV.TabIndex = 58
+        Me.btnSOLV.Text = "SOLVE"
+        Me.btnSOLV.UseVisualStyleBackColor = True
+        Me.btnSOLV.Visible = False
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ClientSize = New System.Drawing.Size(1161, 641)
+        Me.Controls.Add(Me.btnSOLV)
+        Me.Controls.Add(Me.txtSo)
+        Me.Controls.Add(Me.lblP2)
+        Me.Controls.Add(Me.lblP1)
+        Me.Controls.Add(Me.txtReset)
+        Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.lblWould)
         Me.Controls.Add(Me.btnS2)
         Me.Controls.Add(Me.btnG2)
@@ -699,4 +766,10 @@ Partial Class frmMain
     Friend WithEvents btnG2 As Button
     Friend WithEvents btnS2 As Button
     Friend WithEvents lblWould As Label
+    Friend WithEvents txtSearch As TextBox
+    Friend WithEvents txtReset As TextBox
+    Friend WithEvents lblP2 As Label
+    Friend WithEvents lblP1 As Label
+    Friend WithEvents txtSo As TextBox
+    Friend WithEvents btnSOLV As Button
 End Class

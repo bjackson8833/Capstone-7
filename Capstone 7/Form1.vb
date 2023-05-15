@@ -9,10 +9,12 @@ Option Infer Off
 
 
 
+Imports System.CodeDom
 Imports System.Net.Http.Headers
 Imports System.Reflection.Emit
 Imports System.Windows
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar
 
 Public Class frmMain
     Dim word As Integer
@@ -25,6 +27,9 @@ Public Class frmMain
     Dim dblValue As Double
     Public strShareword As String
     Dim strWordR As String
+    Dim AP1 As Double
+    Dim AP2 As Double
+    Dim Points As Double
 
 
 
@@ -75,12 +80,12 @@ Public Class frmMain
         btnG2.Visible = False
         lblWould.Visible = False
 
-
-
+        TurnState = 1
 
     End Sub
 
     Private Sub btnSpin_Click(sender As Object, e As EventArgs) Handles btnSpin.Click
+        txtReset.Text = ""
         picArrow.Visible = True
         picWheel.Visible = True
         btnSpin.Visible = True
@@ -345,11 +350,19 @@ Public Class frmMain
     End Sub
 
     Private Sub GetGoS()
+
+        If TurnState = 1 Then
+            lblP1.Visible = True
+        ElseIf TurnState = 2 Then
+            lblP2.Visible = True
+        End If
+
         lblWould.Visible = True
         btnG2.Visible = True
         btnS2.Visible = True
 
 
+        lblTotal.Visible = False
         btnWheel.Visible = False
         picArrow.Visible = False
         picWheel.Visible = False
@@ -418,14 +431,64 @@ Public Class frmMain
 
     End Sub
     Private Sub btnGuess_Click(sender As Object, e As EventArgs) Handles btnGuess.Click
+        If lblRolled.Text = "Turn Skipped" And TurnState = 1 And txtReset.Text <> "2" Then
+            MessageBox.Show("Your turn has been skipped. It is player 2's turn now")
+            TurnState = 2
+            txtReset.Text = "1"
+        End If
+        If lblRolled.Text = "Turn Skipped" And TurnState = 2 And txtReset.Text <> "1" Then
+            MessageBox.Show("Your turn has been skipped. It is player 1's turn now")
+            TurnState = 1
+            txtReset.Text = "2"
+        End If
 
-        lblRd.Visible = False
-        lblRolled.Visible = False
-        lblTD.Visible = False
-        lblTotal.Visible = False
-        btnGen.Visible = False
 
-        GetGoS()
+
+
+        If lblRolled.Text = "Bankrupt" And TurnState = 1 And txtReset.Text <> "2" Then
+            MessageBox.Show("You've Gone Bankrupt Player 1")
+            TurnState = 2
+            txtReset.Text = "1"
+            AP1 = 0
+        End If
+
+        If lblRolled.Text = "Bankrupt" And TurnState = 2 And txtReset.Text <> "1" Then
+            MessageBox.Show("You've Gone Bankrupt Player 2")
+            TurnState = 1
+            txtReset.Text = "2"
+            AP2 = 0
+        End If
+
+
+
+
+        If lblRolled.Text <> "Turn Skipped" And lblRolled.Text <> "Bankrupt" Then
+            lblRd.Visible = False
+            lblRolled.Visible = False
+            lblTD.Visible = False
+            lblTotal.Visible = False
+            btnGen.Visible = False
+
+            GetGoS()
+        End If
+
+
+
+
+
+
+
+
+
+
+
+        'If TurnState = 1 Then
+        '    lblP1.Text = "Player 1's points:     " + lblTotal.Text
+        '    lblP1.Visible = True
+        'ElseIf TurnState = 2 Then
+        '    lblP2.Text = "Player 2's points:     " + lblTotal.Text
+        '    lblP2.Visible = True
+        'End If
 
 
 
@@ -536,9 +599,40 @@ Public Class frmMain
             changeTurn()
         End If
 
+        Dim strS As String
+
+        strS = txtSearch.Text
+
+        Dim word As String = txtWord.Text
+        Dim myCharacter As Char = strS.Chars(0)
+        Dim specificLetter As Char = myCharacter
+
+        Dim count As Integer = 0
+
+        For Each letter As Char In word
+            If letter = specificLetter Then
+                count += 1
+            End If
+        Next
 
 
+        Points = CDbl(lblRolled.Text) * count
+        If TurnState = 1 Then
+            AP1 += Points
+        End If
+        If TurnState = 2 Then
+            AP2 += Points
+        End If
 
+        lblTotal.Visible = False
+        lblTotal.Text = Points.ToString
+        If TurnState = 1 Then
+            lblP1.Text = "Player 1's points:     " + AP1.ToString
+            lblP1.Visible = True
+        ElseIf TurnState = 2 Then
+            lblP2.Text = "Player 2's points:     " + AP2.ToString
+            lblP2.Visible = True
+        End If
     End Sub
 
 
@@ -583,19 +677,147 @@ Fortune!",
         NewGame()
     End Sub
     Private Sub btnSolve_Click(sender As Object, e As EventArgs) Handles btnSolve.Click
-        Dim strSA As String = txtSolve.Text.ToString
-        If strSA.ToString.ToUpper = strWord.ToUpper Then
-            Winstate()
-        ElseIf strSA.ToString.ToUpper <> strWord.ToUpper Then
-            If TurnState = 1 Then
-                TurnState = 2
-                Winstate()
-            Else
-                TurnState = 1
-                Winstate()
-            End If
+
+
+        If TurnState = 1 And AP1 < 3000 Then
+            MessageBox.Show("You dont have enough money to solve...")
         End If
-        txtSolve.Text = String.Empty
+
+
+        If TurnState = 2 And AP1 < 3000 Then
+            MessageBox.Show("You dont have enough money to solve...")
+        End If
+
+        If TurnState = 1 And AP1 >= 3000 Then
+            AP1 = (AP1 - 3000)
+
+            lblP1.Text = "Player 1's points:     " + AP1.ToString
+                lblP1.Visible = True
+
+            picAD.Location = New Point(499, 365)
+            txtSolve.Location = New Point(541, 545)
+            btnSOLV.Location = New Point(541, 571)
+            btnSOLV.Visible = True
+            btnSolve.Visible = False
+
+
+
+
+
+            btnGen.Visible = True
+
+            lblRd.Visible = True
+            lblRolled.Visible = True
+            lblTD.Visible = True
+            lblTotal.Visible = False
+
+            lblWould.Visible = False
+            btnG2.Visible = False
+            btnS2.Visible = False
+
+            txtWord.Visible = True
+            txtSolve.Visible = True
+            picAD.Visible = True
+            btnWheel.Visible = True
+
+
+            btnA.Visible = False
+            btnB.Visible = False
+            btnC.Visible = False
+            btnD.Visible = False
+            btnE.Visible = False
+            btnF.Visible = False
+            btnG.Visible = False
+            btnH.Visible = False
+            btnI.Visible = False
+            btnJ.Visible = False
+            btnK.Visible = False
+            btnL.Visible = False
+            btnM.Visible = False
+            btnN.Visible = False
+            btnO.Visible = False
+            btnP.Visible = False
+            btnQ.Visible = False
+            btnR.Visible = False
+            btnS.Visible = False
+            btnT.Visible = False
+            btnU.Visible = False
+            btnV.Visible = False
+            btnW.Visible = False
+            btnX.Visible = False
+            btnY.Visible = False
+            btnZ.Visible = False
+            btnSolve.Visible = True
+
+
+
+        ElseIf TurnState = 2 And AP2 >= 3000 Then
+            AP2 = (AP2 - 3000)
+            lblP2.Text = "Player 2's points:     " + AP2.ToString
+            lblP2.Visible = True
+
+            picAD.Location = New Point(499, 365)
+            txtSolve.Location = New Point(541, 545)
+            btnSOLV.Location = New Point(541, 571)
+            btnSOLV.Visible = True
+            btnSolve.Visible = False
+
+
+
+
+
+
+            btnGen.Visible = True
+
+            lblRd.Visible = True
+            lblRolled.Visible = True
+            lblTD.Visible = True
+            lblTotal.Visible = False
+
+            lblWould.Visible = False
+            btnG2.Visible = False
+            btnS2.Visible = False
+
+            txtWord.Visible = True
+            txtSolve.Visible = True
+            picAD.Visible = True
+            btnWheel.Visible = True
+
+
+            btnA.Visible = False
+            btnB.Visible = False
+            btnC.Visible = False
+            btnD.Visible = False
+            btnE.Visible = False
+            btnF.Visible = False
+            btnG.Visible = False
+            btnH.Visible = False
+            btnI.Visible = False
+            btnJ.Visible = False
+            btnK.Visible = False
+            btnL.Visible = False
+            btnM.Visible = False
+            btnN.Visible = False
+            btnO.Visible = False
+            btnP.Visible = False
+            btnQ.Visible = False
+            btnR.Visible = False
+            btnS.Visible = False
+            btnT.Visible = False
+            btnU.Visible = False
+            btnV.Visible = False
+            btnW.Visible = False
+            btnX.Visible = False
+            btnY.Visible = False
+            btnZ.Visible = False
+            btnSolve.Visible = True
+
+
+        End If
+
+
+
+
     End Sub
 
 
@@ -603,119 +825,150 @@ Fortune!",
         frmExtra.Visible = True
         If TurnState = 1 Then
             frmExtra.lblTitle.Text = "Hi Player 1, Would You like to.."
+            lblP2.Visible = False
+            lblP1.Visible = True
+
         ElseIf TurnState = 2 Then
             frmExtra.lblTitle.Text = "Hi Player 2, Would You like to.."
+            lblP1.Visible = False
+            lblP2.Visible = True
         End If
     End Sub
 
 
     Private Sub btnA_Click(sender As Object, e As EventArgs) Handles btnA.Click
+        txtSearch.Text = "A"
         btnA.Enabled = False
         CheckLetter("A")
     End Sub
     Private Sub btnB_Click(sender As Object, e As EventArgs) Handles btnB.Click
+        txtSearch.Text = "B"
         btnB.Enabled = False
         CheckLetter("B")
     End Sub
     Private Sub btnC_Click(sender As Object, e As EventArgs) Handles btnC.Click
+        txtSearch.Text = "C"
         btnC.Enabled = False
         CheckLetter("C")
     End Sub
     Private Sub btnD_Click(sender As Object, e As EventArgs) Handles btnD.Click
+        txtSearch.Text = "D"
         btnD.Enabled = False
         CheckLetter("D")
     End Sub
     Private Sub btnE_Click(sender As Object, e As EventArgs) Handles btnE.Click
+        txtSearch.Text = "E"
         btnE.Enabled = False
         CheckLetter("E")
     End Sub
     Private Sub btnF_Click(sender As Object, e As EventArgs) Handles btnF.Click
+        txtSearch.Text = "F"
         btnF.Enabled = False
         CheckLetter("F")
     End Sub
     Private Sub btnG_Click(sender As Object, e As EventArgs) Handles btnG.Click
+        txtSearch.Text = "G"
         btnG.Enabled = False
         CheckLetter("G")
     End Sub
     Private Sub btnH_Click(sender As Object, e As EventArgs) Handles btnH.Click
+        txtSearch.Text = "H"
         btnH.Enabled = False
         CheckLetter("H")
     End Sub
     Private Sub btnI_Click(sender As Object, e As EventArgs) Handles btnI.Click
+        txtSearch.Text = "I"
         btnI.Enabled = False
         CheckLetter("I")
     End Sub
     Private Sub btnJ_Click(sender As Object, e As EventArgs) Handles btnJ.Click
+        txtSearch.Text = "J"
         btnJ.Enabled = False
         CheckLetter("J")
     End Sub
     Private Sub btnK_Click(sender As Object, e As EventArgs) Handles btnK.Click
+        txtSearch.Text = "K"
         btnK.Enabled = False
         CheckLetter("K")
     End Sub
     Private Sub btnL_Click(sender As Object, e As EventArgs) Handles btnL.Click
+        txtSearch.Text = "L"
         btnL.Enabled = False
         CheckLetter("L")
     End Sub
     Private Sub btnM_Click(sender As Object, e As EventArgs) Handles btnM.Click
+        txtSearch.Text = "M"
         btnM.Enabled = False
         CheckLetter("M")
     End Sub
     Private Sub btnN_Click(sender As Object, e As EventArgs) Handles btnN.Click
+        txtSearch.Text = "N"
         btnN.Enabled = False
         CheckLetter("N")
     End Sub
     Private Sub btnO_Click(sender As Object, e As EventArgs) Handles btnO.Click
+        txtSearch.Text = "O"
         btnO.Enabled = False
         CheckLetter("O")
     End Sub
     Private Sub btnP_Click(sender As Object, e As EventArgs) Handles btnP.Click
+        txtSearch.Text = "P"
         btnP.Enabled = False
         CheckLetter("P")
     End Sub
     Private Sub btnQ_Click(sender As Object, e As EventArgs) Handles btnQ.Click
+        txtSearch.Text = "Q"
         btnQ.Enabled = False
         CheckLetter("Q")
     End Sub
     Private Sub btnR_Click(sender As Object, e As EventArgs) Handles btnR.Click
+        txtSearch.Text = "R"
         btnR.Enabled = False
         CheckLetter("R")
     End Sub
     Private Sub btnS_Click(sender As Object, e As EventArgs) Handles btnS.Click
+        txtSearch.Text = "S"
         btnS.Enabled = False
         CheckLetter("S")
     End Sub
     Private Sub btnT_Click(sender As Object, e As EventArgs) Handles btnT.Click
+        txtSearch.Text = "T"
         btnT.Enabled = False
         CheckLetter("T")
     End Sub
     Private Sub btnU_Click(sender As Object, e As EventArgs) Handles btnU.Click
+        txtSearch.Text = "U"
         btnU.Enabled = False
         CheckLetter("U")
     End Sub
     Private Sub btnV_Click(sender As Object, e As EventArgs) Handles btnV.Click
+        txtSearch.Text = "V"
         btnV.Enabled = False
         CheckLetter("V")
     End Sub
     Private Sub btnW_Click(sender As Object, e As EventArgs) Handles btnW.Click
+        txtSearch.Text = "W"
         btnW.Enabled = False
         CheckLetter("W")
     End Sub
     Private Sub btnX_Click(sender As Object, e As EventArgs) Handles btnX.Click
+        txtSearch.Text = "X"
         btnX.Enabled = False
         CheckLetter("X")
     End Sub
     Private Sub btnY_Click(sender As Object, e As EventArgs) Handles btnY.Click
+        txtSearch.Text = "Y"
         btnY.Enabled = False
         CheckLetter("Y")
     End Sub
     Private Sub btnZ_Click(sender As Object, e As EventArgs) Handles btnZ.Click
+        txtSearch.Text = "Z"
         btnZ.Enabled = False
         CheckLetter("Z")
     End Sub
 
     Private Sub btnWheel_Click(sender As Object, e As EventArgs) Handles btnWheel.Click
-
+        txtSo.Text = 2.ToString
         picAD.Visible = False
         btnWheel.Visible = False
         picArrow.Visible = True
@@ -792,6 +1045,13 @@ Fortune!",
         btnY.Visible = False
         btnZ.Visible = False
         btnSolve.Visible = False
+        picAD.Visible = False
+        lblP1.Text = ""
+        lblP2.Text = ""
+        lblTotal.Text = ""
+        btnSOLV.Visible = False
+        picWheel.Image = My.Resources.c25
+        txtSolve.Location = New Point(828, 436)
     End Sub
 
     Private Sub btnG2_Click(sender As Object, e As EventArgs) Handles btnG2.Click
@@ -801,7 +1061,7 @@ Fortune!",
         lblRd.Visible = True
         lblRolled.Visible = True
         lblTD.Visible = True
-        lblTotal.Visible = True
+        lblTotal.Visible = False
 
 
         lblWould.Visible = False
@@ -874,67 +1134,321 @@ Fortune!",
     End Sub
 
     Private Sub btnS2_Click(sender As Object, e As EventArgs) Handles btnS2.Click
+        If TurnState = 1 Then
+            If AP1 < 3000 Then
+                MessageBox.Show("You dont have enough money to solve...")
+                btnGen.Visible = True
+
+                lblRd.Visible = True
+                lblRolled.Visible = True
+                lblTD.Visible = True
+                lblTotal.Visible = False
+
+
+                lblWould.Visible = False
+                btnS2.Visible = False
+                btnG2.Visible = False
+                btnWheel.Visible = True
+                picArrow.Visible = False
+                picWheel.Visible = False
+                btnSpin.Visible = False
+                btnGuess.Visible = False
+
+
+                btnA.Enabled = True
+                btnB.Enabled = True
+                btnC.Enabled = True
+                btnD.Enabled = True
+                btnE.Enabled = True
+                btnF.Enabled = True
+                btnG.Enabled = True
+                btnH.Enabled = True
+                btnI.Enabled = True
+                btnJ.Enabled = True
+                btnK.Enabled = True
+                btnL.Enabled = True
+                btnM.Enabled = True
+                btnN.Enabled = True
+                btnO.Enabled = True
+                btnP.Enabled = True
+                btnQ.Enabled = True
+                btnR.Enabled = True
+                btnS.Enabled = True
+                btnT.Enabled = True
+                btnU.Enabled = True
+                btnV.Enabled = True
+                btnW.Enabled = True
+                btnX.Enabled = True
+                btnY.Enabled = True
+                btnZ.Enabled = True
+
+
+                txtWord.Visible = True
+                txtSolve.Visible = True
+                btnA.Visible = True
+                btnB.Visible = True
+                btnC.Visible = True
+                btnD.Visible = True
+                btnE.Visible = True
+                btnF.Visible = True
+                btnG.Visible = True
+                btnH.Visible = True
+                btnI.Visible = True
+                btnJ.Visible = True
+                btnK.Visible = True
+                btnL.Visible = True
+                btnM.Visible = True
+                btnN.Visible = True
+                btnO.Visible = True
+                btnP.Visible = True
+                btnQ.Visible = True
+                btnR.Visible = True
+                btnS.Visible = True
+                btnT.Visible = True
+                btnU.Visible = True
+                btnV.Visible = True
+                btnW.Visible = True
+                btnX.Visible = True
+                btnY.Visible = True
+                btnZ.Visible = True
+                btnSolve.Visible = True
+                txtSo.Text = 1.ToString
+            End If
+
+
+        ElseIf TurnState = 2 Then
+            If AP2 < 3000 Then
+                MessageBox.Show("You dont have enough money to solve...")
+                btnGen.Visible = True
+
+                lblRd.Visible = True
+                lblRolled.Visible = True
+                lblTD.Visible = True
+                lblTotal.Visible = False
+
+
+                lblWould.Visible = False
+                btnS2.Visible = False
+                btnG2.Visible = False
+                btnWheel.Visible = True
+                picArrow.Visible = False
+                picWheel.Visible = False
+                btnSpin.Visible = False
+                btnGuess.Visible = False
+
+
+                btnA.Enabled = True
+                btnB.Enabled = True
+                btnC.Enabled = True
+                btnD.Enabled = True
+                btnE.Enabled = True
+                btnF.Enabled = True
+                btnG.Enabled = True
+                btnH.Enabled = True
+                btnI.Enabled = True
+                btnJ.Enabled = True
+                btnK.Enabled = True
+                btnL.Enabled = True
+                btnM.Enabled = True
+                btnN.Enabled = True
+                btnO.Enabled = True
+                btnP.Enabled = True
+                btnQ.Enabled = True
+                btnR.Enabled = True
+                btnS.Enabled = True
+                btnT.Enabled = True
+                btnU.Enabled = True
+                btnV.Enabled = True
+                btnW.Enabled = True
+                btnX.Enabled = True
+                btnY.Enabled = True
+                btnZ.Enabled = True
+
+
+                txtWord.Visible = True
+                txtSolve.Visible = True
+                btnA.Visible = True
+                btnB.Visible = True
+                btnC.Visible = True
+                btnD.Visible = True
+                btnE.Visible = True
+                btnF.Visible = True
+                btnG.Visible = True
+                btnH.Visible = True
+                btnI.Visible = True
+                btnJ.Visible = True
+                btnK.Visible = True
+                btnL.Visible = True
+                btnM.Visible = True
+                btnN.Visible = True
+                btnO.Visible = True
+                btnP.Visible = True
+                btnQ.Visible = True
+                btnR.Visible = True
+                btnS.Visible = True
+                btnT.Visible = True
+                btnU.Visible = True
+                btnV.Visible = True
+                btnW.Visible = True
+                btnX.Visible = True
+                btnY.Visible = True
+                btnZ.Visible = True
+                btnSolve.Visible = True
+            End If
+
+            txtSo.Text = 1.ToString
+        End If
 
 
 
-        picAD.Location = New Point(499, 365)
-        txtSolve.Location = New Point(541, 545)
-        btnSolve.Location = New Point(541, 571)
+
+        If txtSo.Text <> "1" And TurnState = 1 Then
+            AP1 = (AP1 - 3000)
+
+            picAD.Location = New Point(499, 365)
+            txtSolve.Location = New Point(541, 545)
+            btnSOLV.Location = New Point(541, 571)
+            btnSOLV.Visible = True
 
 
 
 
 
 
+            btnGen.Visible = True
 
-        btnGen.Visible = True
+            lblRd.Visible = True
+            lblRolled.Visible = True
+            lblTD.Visible = True
+            lblTotal.Visible = False
 
-        lblRd.Visible = True
-        lblRolled.Visible = True
-        lblTD.Visible = True
-        lblTotal.Visible = True
+            lblWould.Visible = False
+            btnG2.Visible = False
+            btnS2.Visible = False
 
-        lblWould.Visible = False
-        btnG2.Visible = False
-        btnS2.Visible = False
-
-        txtWord.Visible = True
-        txtSolve.Visible = True
-        picAD.Visible = True
-        btnWheel.Visible = True
+            txtWord.Visible = True
+            txtSolve.Visible = True
+            picAD.Visible = True
+            btnWheel.Visible = True
 
 
-        btnA.Visible = False
-        btnB.Visible = False
-        btnC.Visible = False
-        btnD.Visible = False
-        btnE.Visible = False
-        btnF.Visible = False
-        btnG.Visible = False
-        btnH.Visible = False
-        btnI.Visible = False
-        btnJ.Visible = False
-        btnK.Visible = False
-        btnL.Visible = False
-        btnM.Visible = False
-        btnN.Visible = False
-        btnO.Visible = False
-        btnP.Visible = False
-        btnQ.Visible = False
-        btnR.Visible = False
-        btnS.Visible = False
-        btnT.Visible = False
-        btnU.Visible = False
-        btnV.Visible = False
-        btnW.Visible = False
-        btnX.Visible = False
-        btnY.Visible = False
-        btnZ.Visible = False
-        btnSolve.Visible = True
+            btnA.Visible = False
+            btnB.Visible = False
+            btnC.Visible = False
+            btnD.Visible = False
+            btnE.Visible = False
+            btnF.Visible = False
+            btnG.Visible = False
+            btnH.Visible = False
+            btnI.Visible = False
+            btnJ.Visible = False
+            btnK.Visible = False
+            btnL.Visible = False
+            btnM.Visible = False
+            btnN.Visible = False
+            btnO.Visible = False
+            btnP.Visible = False
+            btnQ.Visible = False
+            btnR.Visible = False
+            btnS.Visible = False
+            btnT.Visible = False
+            btnU.Visible = False
+            btnV.Visible = False
+            btnW.Visible = False
+            btnX.Visible = False
+            btnY.Visible = False
+            btnZ.Visible = False
+            btnSolve.Visible = True
 
+
+
+        ElseIf txtSo.Text <> "1" And TurnState = 2 Then
+            AP2 = (AP2 - 3000)
+
+            picAD.Location = New Point(499, 365)
+            txtSolve.Location = New Point(541, 545)
+            btnSOLV.Location = New Point(541, 571)
+            btnSOLV.Visible = True
+
+
+
+
+
+
+            btnGen.Visible = True
+
+            lblRd.Visible = True
+            lblRolled.Visible = True
+            lblTD.Visible = True
+            lblTotal.Visible = False
+
+            lblWould.Visible = False
+            btnG2.Visible = False
+            btnS2.Visible = False
+
+            txtWord.Visible = True
+            txtSolve.Visible = True
+            picAD.Visible = True
+            btnWheel.Visible = True
+
+
+            btnA.Visible = False
+            btnB.Visible = False
+            btnC.Visible = False
+            btnD.Visible = False
+            btnE.Visible = False
+            btnF.Visible = False
+            btnG.Visible = False
+            btnH.Visible = False
+            btnI.Visible = False
+            btnJ.Visible = False
+            btnK.Visible = False
+            btnL.Visible = False
+            btnM.Visible = False
+            btnN.Visible = False
+            btnO.Visible = False
+            btnP.Visible = False
+            btnQ.Visible = False
+            btnR.Visible = False
+            btnS.Visible = False
+            btnT.Visible = False
+            btnU.Visible = False
+            btnV.Visible = False
+            btnW.Visible = False
+            btnX.Visible = False
+            btnY.Visible = False
+            btnZ.Visible = False
+            btnSolve.Visible = True
+
+
+        End If
     End Sub
 
     Private Sub lblWould_Click(sender As Object, e As EventArgs) Handles lblWould.Click
 
+    End Sub
+
+    Private Sub lstSearch_TextChanged(sender As Object, e As EventArgs)
+
+    End Sub
+    Private Sub GSolve()
+        Dim strSA As String = txtSolve.Text.ToString
+        If strSA.ToString.ToUpper = strWord.ToUpper Then
+            Winstate()
+        ElseIf strSA.ToString.ToUpper <> strWord.ToUpper Then
+            If TurnState = 1 Then
+                TurnState = 2
+                Winstate()
+            Else
+                TurnState = 1
+                Winstate()
+            End If
+        End If
+        txtSolve.Text = String.Empty
+
+    End Sub
+
+    Private Sub btnSOLV_Click(sender As Object, e As EventArgs) Handles btnSOLV.Click
+        GSolve()
     End Sub
 End Class
