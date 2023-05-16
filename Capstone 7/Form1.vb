@@ -1,6 +1,6 @@
 ﻿' Name:         Capstone Project
 ' Purpose:      Wheel of Fortune
-' Programmer:   Bj Jackson on 
+' Programmer:   Bj Jackson on 5/15/2023
 
 Option Explicit On
 Option Strict On
@@ -533,13 +533,13 @@ Public Class frmMain
             Dim Randgen As New Random
             Dim intUpper As Integer
             Dim randWord As String
-            intUpper = IO.File.ReadAllLines("C:\Users\bjackson8833\Desktop\vb data files\7\Capstone 7\Capstone 7\txt.txt").Count
+            intUpper = IO.File.ReadAllLines("C:\Users\bjackson8833\Downloads\datatxt.txt").Count
             If intUpper = 0 Then
                 MsgBox("There are no words in this file")
             End If
 
             intRandNum = Randgen.Next(0, intUpper)
-            randWord = IO.File.ReadAllLines("C:\Users\bjackson8833\Desktop\vb data files\7\Capstone 7\Capstone 7\txt.txt").ElementAt(intRandNum).ToString
+            randWord = IO.File.ReadAllLines("C:\Users\bjackson8833\Downloads\datatxt.txt").ElementAt(intRandNum).ToString.ToUpper
             strWord = randWord
             strWordR = randWord
             For intIndex As Integer = 0 To randWord.Length - 1
@@ -640,6 +640,7 @@ Public Class frmMain
 
     Private Sub Winstate()
         If TurnState = 1 Then
+            AP1 = AP1 + 3000
             Dim dlgbutton As DialogResult
             dlgbutton = MessageBox.Show("Player 1 Won!The word/phrase was 
 " + strWordR + "! Start a New Round?", "Wheel Of 
@@ -655,6 +656,7 @@ Fortune!",
                 Me.Close()
             End If
         ElseIf TurnState = 2 Then
+            AP2 = AP2 + 3000
             Dim dlgbutton As DialogResult
             dlgbutton = MessageBox.Show("Player 2 Won!The word/phrase was 
 " + strWordR + "! Start a New Round?", "Wheel Of 
@@ -679,22 +681,8 @@ Fortune!",
     Private Sub btnSolve_Click(sender As Object, e As EventArgs) Handles btnSolve.Click
 
 
-        If TurnState = 1 And AP1 < 3000 Then
-            MessageBox.Show("You dont have enough money to solve...")
-        End If
 
-
-        If TurnState = 2 And AP1 < 3000 Then
-            MessageBox.Show("You dont have enough money to solve...")
-        End If
-
-        If TurnState = 1 And AP1 >= 3000 Then
-            AP1 = (AP1 - 3000)
-
-            lblP1.Text = "Player 1's points:     " + AP1.ToString
-                lblP1.Visible = True
-
-            picAD.Location = New Point(499, 365)
+        picAD.Location = New Point(499, 365)
             txtSolve.Location = New Point(541, 545)
             btnSOLV.Location = New Point(541, 571)
             btnSOLV.Visible = True
@@ -751,69 +739,7 @@ Fortune!",
 
 
 
-        ElseIf TurnState = 2 And AP2 >= 3000 Then
-            AP2 = (AP2 - 3000)
-            lblP2.Text = "Player 2's points:     " + AP2.ToString
-            lblP2.Visible = True
 
-            picAD.Location = New Point(499, 365)
-            txtSolve.Location = New Point(541, 545)
-            btnSOLV.Location = New Point(541, 571)
-            btnSOLV.Visible = True
-            btnSolve.Visible = False
-
-
-
-
-
-
-            btnGen.Visible = True
-
-            lblRd.Visible = True
-            lblRolled.Visible = True
-            lblTD.Visible = True
-            lblTotal.Visible = False
-
-            lblWould.Visible = False
-            btnG2.Visible = False
-            btnS2.Visible = False
-
-            txtWord.Visible = True
-            txtSolve.Visible = True
-            picAD.Visible = True
-            btnWheel.Visible = True
-
-
-            btnA.Visible = False
-            btnB.Visible = False
-            btnC.Visible = False
-            btnD.Visible = False
-            btnE.Visible = False
-            btnF.Visible = False
-            btnG.Visible = False
-            btnH.Visible = False
-            btnI.Visible = False
-            btnJ.Visible = False
-            btnK.Visible = False
-            btnL.Visible = False
-            btnM.Visible = False
-            btnN.Visible = False
-            btnO.Visible = False
-            btnP.Visible = False
-            btnQ.Visible = False
-            btnR.Visible = False
-            btnS.Visible = False
-            btnT.Visible = False
-            btnU.Visible = False
-            btnV.Visible = False
-            btnW.Visible = False
-            btnX.Visible = False
-            btnY.Visible = False
-            btnZ.Visible = False
-            btnSolve.Visible = True
-
-
-        End If
 
 
 
@@ -824,12 +750,12 @@ Fortune!",
     Private Sub changeTurn()
         frmExtra.Visible = True
         If TurnState = 1 Then
-            frmExtra.lblTitle.Text = "Hi Player 1, Would You like to.."
+            frmExtra.lblTitle.Text = "Hi Player 1, Would You like to spin.."
             lblP2.Visible = False
             lblP1.Visible = True
 
         ElseIf TurnState = 2 Then
-            frmExtra.lblTitle.Text = "Hi Player 2, Would You like to.."
+            frmExtra.lblTitle.Text = "Hi Player 2, Would You like to spin.."
             lblP1.Visible = False
             lblP2.Visible = True
         End If
@@ -1134,188 +1060,21 @@ Fortune!",
     End Sub
 
     Private Sub btnS2_Click(sender As Object, e As EventArgs) Handles btnS2.Click
-        If TurnState = 1 Then
-            If AP1 < 3000 Then
-                MessageBox.Show("You dont have enough money to solve...")
-                btnGen.Visible = True
-
-                lblRd.Visible = True
-                lblRolled.Visible = True
-                lblTD.Visible = True
-                lblTotal.Visible = False
-
-
-                lblWould.Visible = False
-                btnS2.Visible = False
-                btnG2.Visible = False
-                btnWheel.Visible = True
-                picArrow.Visible = False
-                picWheel.Visible = False
-                btnSpin.Visible = False
-                btnGuess.Visible = False
-
-
-                btnA.Enabled = True
-                btnB.Enabled = True
-                btnC.Enabled = True
-                btnD.Enabled = True
-                btnE.Enabled = True
-                btnF.Enabled = True
-                btnG.Enabled = True
-                btnH.Enabled = True
-                btnI.Enabled = True
-                btnJ.Enabled = True
-                btnK.Enabled = True
-                btnL.Enabled = True
-                btnM.Enabled = True
-                btnN.Enabled = True
-                btnO.Enabled = True
-                btnP.Enabled = True
-                btnQ.Enabled = True
-                btnR.Enabled = True
-                btnS.Enabled = True
-                btnT.Enabled = True
-                btnU.Enabled = True
-                btnV.Enabled = True
-                btnW.Enabled = True
-                btnX.Enabled = True
-                btnY.Enabled = True
-                btnZ.Enabled = True
-
-
-                txtWord.Visible = True
-                txtSolve.Visible = True
-                btnA.Visible = True
-                btnB.Visible = True
-                btnC.Visible = True
-                btnD.Visible = True
-                btnE.Visible = True
-                btnF.Visible = True
-                btnG.Visible = True
-                btnH.Visible = True
-                btnI.Visible = True
-                btnJ.Visible = True
-                btnK.Visible = True
-                btnL.Visible = True
-                btnM.Visible = True
-                btnN.Visible = True
-                btnO.Visible = True
-                btnP.Visible = True
-                btnQ.Visible = True
-                btnR.Visible = True
-                btnS.Visible = True
-                btnT.Visible = True
-                btnU.Visible = True
-                btnV.Visible = True
-                btnW.Visible = True
-                btnX.Visible = True
-                btnY.Visible = True
-                btnZ.Visible = True
-                btnSolve.Visible = True
-                txtSo.Text = 1.ToString
-            End If
-
-
-        ElseIf TurnState = 2 Then
-            If AP2 < 3000 Then
-                MessageBox.Show("You dont have enough money to solve...")
-                btnGen.Visible = True
-
-                lblRd.Visible = True
-                lblRolled.Visible = True
-                lblTD.Visible = True
-                lblTotal.Visible = False
-
-
-                lblWould.Visible = False
-                btnS2.Visible = False
-                btnG2.Visible = False
-                btnWheel.Visible = True
-                picArrow.Visible = False
-                picWheel.Visible = False
-                btnSpin.Visible = False
-                btnGuess.Visible = False
-
-
-                btnA.Enabled = True
-                btnB.Enabled = True
-                btnC.Enabled = True
-                btnD.Enabled = True
-                btnE.Enabled = True
-                btnF.Enabled = True
-                btnG.Enabled = True
-                btnH.Enabled = True
-                btnI.Enabled = True
-                btnJ.Enabled = True
-                btnK.Enabled = True
-                btnL.Enabled = True
-                btnM.Enabled = True
-                btnN.Enabled = True
-                btnO.Enabled = True
-                btnP.Enabled = True
-                btnQ.Enabled = True
-                btnR.Enabled = True
-                btnS.Enabled = True
-                btnT.Enabled = True
-                btnU.Enabled = True
-                btnV.Enabled = True
-                btnW.Enabled = True
-                btnX.Enabled = True
-                btnY.Enabled = True
-                btnZ.Enabled = True
-
-
-                txtWord.Visible = True
-                txtSolve.Visible = True
-                btnA.Visible = True
-                btnB.Visible = True
-                btnC.Visible = True
-                btnD.Visible = True
-                btnE.Visible = True
-                btnF.Visible = True
-                btnG.Visible = True
-                btnH.Visible = True
-                btnI.Visible = True
-                btnJ.Visible = True
-                btnK.Visible = True
-                btnL.Visible = True
-                btnM.Visible = True
-                btnN.Visible = True
-                btnO.Visible = True
-                btnP.Visible = True
-                btnQ.Visible = True
-                btnR.Visible = True
-                btnS.Visible = True
-                btnT.Visible = True
-                btnU.Visible = True
-                btnV.Visible = True
-                btnW.Visible = True
-                btnX.Visible = True
-                btnY.Visible = True
-                btnZ.Visible = True
-                btnSolve.Visible = True
-            End If
-
-            txtSo.Text = 1.ToString
-        End If
 
 
 
 
-        If txtSo.Text <> "1" And TurnState = 1 Then
-            AP1 = (AP1 - 3000)
-
-            picAD.Location = New Point(499, 365)
+        picAD.Location = New Point(499, 365)
             txtSolve.Location = New Point(541, 545)
             btnSOLV.Location = New Point(541, 571)
             btnSOLV.Visible = True
+        btnSolve.Visible = False
 
 
 
 
 
-
-            btnGen.Visible = True
+        btnGen.Visible = True
 
             lblRd.Visible = True
             lblRolled.Visible = True
@@ -1362,66 +1121,7 @@ Fortune!",
 
 
 
-        ElseIf txtSo.Text <> "1" And TurnState = 2 Then
-            AP2 = (AP2 - 3000)
 
-            picAD.Location = New Point(499, 365)
-            txtSolve.Location = New Point(541, 545)
-            btnSOLV.Location = New Point(541, 571)
-            btnSOLV.Visible = True
-
-
-
-
-
-
-            btnGen.Visible = True
-
-            lblRd.Visible = True
-            lblRolled.Visible = True
-            lblTD.Visible = True
-            lblTotal.Visible = False
-
-            lblWould.Visible = False
-            btnG2.Visible = False
-            btnS2.Visible = False
-
-            txtWord.Visible = True
-            txtSolve.Visible = True
-            picAD.Visible = True
-            btnWheel.Visible = True
-
-
-            btnA.Visible = False
-            btnB.Visible = False
-            btnC.Visible = False
-            btnD.Visible = False
-            btnE.Visible = False
-            btnF.Visible = False
-            btnG.Visible = False
-            btnH.Visible = False
-            btnI.Visible = False
-            btnJ.Visible = False
-            btnK.Visible = False
-            btnL.Visible = False
-            btnM.Visible = False
-            btnN.Visible = False
-            btnO.Visible = False
-            btnP.Visible = False
-            btnQ.Visible = False
-            btnR.Visible = False
-            btnS.Visible = False
-            btnT.Visible = False
-            btnU.Visible = False
-            btnV.Visible = False
-            btnW.Visible = False
-            btnX.Visible = False
-            btnY.Visible = False
-            btnZ.Visible = False
-            btnSolve.Visible = True
-
-
-        End If
     End Sub
 
     Private Sub lblWould_Click(sender As Object, e As EventArgs) Handles lblWould.Click
@@ -1450,5 +1150,9 @@ Fortune!",
 
     Private Sub btnSOLV_Click(sender As Object, e As EventArgs) Handles btnSOLV.Click
         GSolve()
+    End Sub
+
+    Private Sub btnShow_Click(sender As Object, e As EventArgs) Handles btnShow.Click
+        MessageBox.Show(strWord)
     End Sub
 End Class

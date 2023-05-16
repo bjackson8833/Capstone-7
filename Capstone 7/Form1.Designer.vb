@@ -84,6 +84,7 @@ Partial Class frmMain
         Me.lblP2 = New System.Windows.Forms.Label()
         Me.txtSo = New System.Windows.Forms.TextBox()
         Me.btnSOLV = New System.Windows.Forms.Button()
+        Me.btnShow = New System.Windows.Forms.Button()
         CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWheel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picArrow, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -637,12 +638,22 @@ Partial Class frmMain
         Me.btnSOLV.UseVisualStyleBackColor = True
         Me.btnSOLV.Visible = False
         '
+        'btnShow
+        '
+        Me.btnShow.Location = New System.Drawing.Point(12, 595)
+        Me.btnShow.Name = "btnShow"
+        Me.btnShow.Size = New System.Drawing.Size(93, 42)
+        Me.btnShow.TabIndex = 59
+        Me.btnShow.Text = "Show"
+        Me.btnShow.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ClientSize = New System.Drawing.Size(1161, 641)
+        Me.Controls.Add(Me.btnShow)
         Me.Controls.Add(Me.btnSOLV)
         Me.Controls.Add(Me.txtSo)
         Me.Controls.Add(Me.lblP2)
@@ -772,4 +783,5 @@ Partial Class frmMain
     Friend WithEvents lblP1 As Label
     Friend WithEvents txtSo As TextBox
     Friend WithEvents btnSOLV As Button
+    Friend WithEvents btnShow As Button
 End Class
